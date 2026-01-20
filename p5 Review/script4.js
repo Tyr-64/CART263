@@ -23,14 +23,14 @@ function setup() {
 
 function draw() {
     drawRectangle(width * 0, 0, width / 3, height, rectColor.oneR * rectColor.oneW,rectColor.oneG * rectColor.oneW,rectColor.oneB * rectColor.oneW);
-    drawRectangle(width * .33, 0, width / 3, height, rectColor.twoR * rectColor.twoW, rectColor.twoG * rectColor.twoW, rectColor.twoB * rectColor.twoW);
-    drawRectangle(width * .66, 0, width / 3, height, rectColor.threeR * rectColor.thWee, rectColor.threeG * rectColor.thWee, rectColor.threeB * rectColor.thWee);
-    if(mouseX < width * .33 && mouseY < height){
+    drawRectangle(width / 3, 0, width / 3, height, rectColor.twoR * rectColor.twoW, rectColor.twoG * rectColor.twoW, rectColor.twoB * rectColor.twoW);
+    drawRectangle(width / 1.5, 0, width / 3, height, rectColor.threeR * rectColor.thWee, rectColor.threeG * rectColor.thWee, rectColor.threeB * rectColor.thWee);
+    if(mouseX < width / 3 && mouseY < height){
         rectColor.oneW = 100;
         rectColor.twoW = 1;
         rectColor.thWee = 1;
     }
-    else if(mouseX < width * .66  && mouseY < height){
+    else if(mouseX < width / 1.5  && mouseY < height){
         rectColor.oneW = 1;
         rectColor.twoW = 100;
         rectColor.thWee = 1;
