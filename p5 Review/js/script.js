@@ -15,9 +15,9 @@ let square = {
     },
     two : {
         w: width/10,
-        h:  height/10,
+        h: height/10,
         x: (width/10)*3,
-        y: (width/10)*3,
+        y: width/10,
         sR: 250,
         sG: 5,
         sB: 5,
@@ -44,9 +44,8 @@ function setup() {
 function draw() {
     background('black');
     displaySquare(square.one.x,square.one.y,square.one.w,square.one.h,square.one.sR,square.one.sG,square.one.sB);
-    //squareCollision();
+    displaySquare(square.two.x,square.two.y,square.two.w,square.two.h,square.two.sR,square.two.sG,square.two.sB);
     squareInteract();
-
     for(let i = 1; i <= counter; i++){
         drawCircle(ellipse.x,ellipse.y,ellipse.radius * i, ellipse.alpha * i, ellipse.eR,ellipse.eG,ellipse.eB);
     }
@@ -91,6 +90,7 @@ function squareInteract() {
 
 function drawCircle(x,y,radius,alpha,r,g,b){
     push();
+    stroke(r,g,b);
     fill(r,g,b,alpha);
     circle(x,y,radius);
     pop();
