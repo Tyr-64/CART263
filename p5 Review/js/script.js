@@ -62,7 +62,10 @@ function displaySquare(x,y,w,h,r,g,b){
 
 function squareCollision() {
     if(mouseX > square.one.x && mouseX < (square.one.x*2) && mouseY > square.one.y && mouseY < (square.one.y*2)){
-        return true;
+        return 'leftBox';
+    }
+    else if(/*over red box*/){
+        return 'rightBox';
     }
     else{
         return false;
