@@ -1,55 +1,101 @@
 "use strict";
-const width = 400;
-const height = 400;
-let rectColor = {
-    oneR : 20,
-    oneG : 50,
-    oneB : 150,
-    oneW : 1,
-    twoR : 10,
-    twoG : 30,
-    twoB : 130,
-    twoW : 1,
-    threeR : 40,
-    threeG : 40,
-    threeB : 240,
-    thWee : 1,
+const width = 600;
+const height = 600;
+let counter = 0;
+let click;
+let square = {
+    one : {
+        w: width/10,
+        h: height/10,
+        x: width/10,
+        y: height/10,
+        sR: 250,
+        sG: 94,
+        sB: 3,
+    },
+    two : {
+        w: width/10,
+        h:  height/10,
+        x: (width/10)*3,
+        y: (width/10)*3,
+        sR: 250,
+        sG: 5,
+        sB: 5,
+    }
+}
+let ellipse = {
+    x: width/2,
+    y: height/2,
+    radius: width/12,
+    eR: 255,
+    eG: 255,
+    eB: 255,
+    alpha: 15,
 }
 
+
 function setup() {
-    console.log("go")
+    console.log("go");
     createCanvas(width, height);
+
+
 }
 
 function draw() {
-    drawRectangle(width * 0, 0, width / 3, height, rectColor.oneR * rectColor.oneW,rectColor.oneG * rectColor.oneW,rectColor.oneB * rectColor.oneW);
-    drawRectangle(width * .33, 0, width / 3, height, rectColor.twoR * rectColor.twoW, rectColor.twoG * rectColor.twoW, rectColor.twoB * rectColor.twoW);
-    drawRectangle(width * .66, 0, width / 3, height, rectColor.threeR * rectColor.thWee, rectColor.threeG * rectColor.thWee, rectColor.threeB * rectColor.thWee);
-    if(mouseX < width * .33 && mouseY < height){
-        rectColor.oneW = 100;
-        rectColor.twoW = 1;
-        rectColor.thWee = 1;
+    background('black');
+    displaySquare(square.one.x,square.one.y,square.one.w,square.one.h,square.one.sR,square.one.sG,square.one.sB);
+    //squareCollision();
+    squareInteract();
+
+    for(let i = 1; i <= counter; i++){
+        drawCircle(ellipse.x,ellipse.y,ellipse.radius * i, ellipse.alpha * i, ellipse.eR,ellipse.eG,ellipse.eB);
     }
-    else if(mouseX < width * .66  && mouseY < height){
-        rectColor.oneW = 1;
-        rectColor.twoW = 100;
-        rectColor.thWee = 1;
-    }
-    else if(mouseX < width  && mouseY < height){
-        rectColor.oneW = 1;
-        rectColor.twoW = 1;
-        rectColor.thWee = 100;
+    click = false;
+
+}
+
+function displaySquare(x,y,w,h,r,g,b){
+    push();
+    fill(r,g,b);
+    rect(x, y, w, h);
+    pop();
+}
+
+function squareCollision() {
+    if(mouseX > square.one.x && mouseX < (square.one.x*2) && mouseY > square.one.y && mouseY < (square.one.y*2)){
+        return true;
     }
     else{
-        rectColor.oneW = 1;
-        rectColor.twoW = 1;
-        rectColor.thWee = 1;
+        return false;
     }
 }
 
-function drawRectangle(x,y,w,h,r,g,b){
+function squareInteract() {
+    if (squareCollision() === true){
+        square.one.sR = 252;
+        square.one.sG = 161;
+        square.one.sB = 3;
+    }
+    else if (squareCollision() === false){
+        square.one.sR = 250;
+        square.one.sG = 94;
+        square.one.sB = 3;
+    }
+    if (squareCollision() === true && click === true) {
+        counter++;
+    }
+    if(counter > 10){
+        counter = 0;
+    }
+}
+
+function drawCircle(x,y,radius,alpha,r,g,b){
     push();
-    fill(r, g, b);
-    rect(x, y, w, h);
+    fill(r,g,b,alpha);
+    circle(x,y,radius);
     pop();
+}
+
+function mouseClicked(){
+    click = true;
 }
