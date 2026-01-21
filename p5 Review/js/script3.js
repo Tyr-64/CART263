@@ -25,14 +25,14 @@ function setup() {
 
 function draw() {
     background('black');
-    drawRectangle(oneX,oneY,Rwidth,Rheight,colorR,colorG,colorB);
-    drawRectangle(twoX,twoY,Rwidth,Rheight,colorR,colorG,colorB);
-    drawRectangle(threeX,threeY,Rwidth,Rheight,colorThreeR,colorThreeG,colorThreeB);
-    threeY+= 4;
-    if(threeY > width){
+    drawRectangle(oneX, oneY, Rwidth, Rheight, colorR, colorG, colorB);
+    drawRectangle(twoX, twoY, Rwidth, Rheight, colorR, colorG, colorB);
+    drawRectangle(threeX, threeY, Rwidth, Rheight, colorThreeR, colorThreeG, colorThreeB);
+    threeY += 4;
+    if (threeY > width) {
         threeY = 0;
     }
-    if(lastFrameX != mouseX || lastFrameY != mouseY){
+    if (lastFrameX != mouseX || lastFrameY != mouseY) {
         colorThreeR = random(1, 255);
         colorThreeG = random(1, 255);
         colorThreeB = random(1, 255);
@@ -42,29 +42,20 @@ function draw() {
     lastFrameY = mouseY;
 }
 
-function drawRectangle(x,y,w,h,r,g,b){
+function drawRectangle(x, y, w, h, r, g, b) {
     push();
     fill(r, g, b);
     rect(x, y, w, h);
     pop();
 }
 
-function mouseClicked(){
+function mouseClicked() {
     oneX += 10;
     oneY += 5;
 }
-function keyTyped(){
-    if (keyCode === 32){
+function keyTyped() {
+    if (keyCode === 32) {
         twoX += 5;
         twoY += 10;
     }
 }
-
-// drawEllipse(Ex, Ey, Ewidth, Eheight, colorR, colorG, colorB);
-// function drawEllipse(x,y,w,h,r,g,b){
-//     push();
-//     fill(r, g, b);
-//     ellipse(x, y, w, h);
-//     pop();
-
-// }

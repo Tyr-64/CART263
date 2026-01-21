@@ -2,7 +2,7 @@
 const width = 600;
 const height = 600;
 let counter = 0;
-let click;
+let click = false;
 let square = {
     one: {
         w: width / 10,
@@ -23,7 +23,7 @@ let square = {
         sB: 5,
     }
 }
-let ellipse = {
+const ellipse = {
     x: width / 2,
     y: height / 2,
     radius: width / 12,

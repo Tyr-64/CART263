@@ -1,13 +1,13 @@
 "use strict";
-let width = 400;
-let height = 400;
-let Ewidth = 100;
-let Eheight = 100;
-let Ex = 100;
-let Ey = 100;
-let colorR = 200;
-let colorG = 100;
-let colorB = 120;
+const width = 400;
+const height = 400;
+const Ewidth = 100;
+const Eheight = 100;
+const Ex = 100;
+const Ey = 100;
+const colorR = 200;
+const colorG = 100;
+const colorB = 120;
 
 function setup() {
     console.log("go")
@@ -20,7 +20,7 @@ function draw() {
     drawEllipse(Ex * 3, Ey * 3, Eheight * 3, Ewidth * 3, colorR - 20, colorG + 100, colorB + 50);
 }
 
-function drawEllipse(x,y,w,h,r,g,b){
+function drawEllipse(x, y, w, h, r, g, b) {
     push();
     fill(r, g, b);
     ellipse(x, y, w, h);
