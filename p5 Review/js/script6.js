@@ -11,7 +11,7 @@ const displayText = {
     y: width / 2,
 }
 
-//canvas and... WHAT'S THIS!?? BACKGROUND TOO?? what are you INSANE???
+//canvas and... shiiiit background too? no way!
 function setup() {
     console.log("go");
     createCanvas(width, height);
