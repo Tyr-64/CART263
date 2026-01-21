@@ -18,7 +18,7 @@ let lastFrameY = 0;
 let colorThreeR = 200;
 let colorThreeG = 100;
 let colorThreeB = 120;
-//canvas? i barely know-as!
+//you gussed it.. canvas.
 function setup() {
     console.log("go")
     createCanvas(width, height);
