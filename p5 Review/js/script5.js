@@ -1,4 +1,5 @@
 "use strict";
+// whaaat whaaaaat its variables whaaat
 const width = 600;
 const height = 600;
 let counter = 0;
@@ -33,14 +34,14 @@ const ellipse = {
     alpha: 15,
 }
 
-
+// what else but canvas?
 function setup() {
     console.log("go");
     createCanvas(width, height);
 
 
 }
-
+// draws background and uses function to draw squares, uses square interact function to handle user inputs and their effects, for loop displays contentric circles, resets click param at end of draw
 function draw() {
     background('black');
     displaySquare(square.one.x, square.one.y, square.one.w, square.one.h, square.one.sR, square.one.sG, square.one.sB);
@@ -52,14 +53,14 @@ function draw() {
     click = false;
 
 }
-
+// just pluggin along making squares all day- barely enough time to do anything else!
 function displaySquare(x, y, w, h, r, g, b) {
     push();
     fill(r, g, b);
     rect(x, y, w, h);
     pop();
 }
-
+// returns value corresponding to what the mouse is over (including nothing)
 function squareCollision() {
     if (mouseX > square.one.x && mouseX < (square.one.x * 2) && mouseY > square.one.y && mouseY < (square.one.y * 2)) {
         return 'leftBox';
@@ -71,7 +72,7 @@ function squareCollision() {
         return false;
     }
 }
-
+// handles most user interactions like increasing and decreasing ring counts, as well as the hover color change behavior on the box buttons
 function squareInteract() {
     if (squareCollision() === 'leftBox') {
         square.one.sR = 252;
@@ -101,7 +102,7 @@ function squareInteract() {
         counter = 0;
     }
 }
-
+// draws the circles. discussing a strike with displaySquare. things are getting tense.
 function drawCircle(x, y, radius, alpha, r, g, b) {
     push();
     stroke(r, g, b);
@@ -109,7 +110,7 @@ function drawCircle(x, y, radius, alpha, r, g, b) {
     circle(x, y, radius);
     pop();
 }
-
+// wow what a simple life this function must live. probably pretty boring ngl.
 function mouseClicked() {
     click = true;
 }

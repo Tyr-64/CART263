@@ -1,4 +1,5 @@
 "use strict";
+//all my variables established. grazing in their pen. unbothered as consts are.
 const width = 400;
 const height = 400;
 const Ewidth = 100;
@@ -8,12 +9,12 @@ const Ey = 100;
 const colorR = 200;
 const colorG = 100;
 const colorB = 120;
-
+// make canvas
 function setup() {
     console.log("go")
     createCanvas(width, height);
 }
-
+// draw each circle, pushing and popping to allow for new fills each time
 function draw() {
     push();
     fill(colorR, colorG, colorB);

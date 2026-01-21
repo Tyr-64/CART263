@@ -1,4 +1,5 @@
 "use strict";
+// variables.. youre important but.. gosh. sitting up here high and dry? just directing everyone down there?
 const width = 600;
 const height = 600;
 const unit = width / 20;
@@ -10,13 +11,13 @@ const displayText = {
     y: width / 2,
 }
 
-
+//canvas and... WHAT'S THIS!?? BACKGROUND TOO?? what are you INSANE???
 function setup() {
     console.log("go");
     createCanvas(width, height);
     background('black');
 }
-
+// displays text from objects as well as using for loops to display numbers in sequence (using the same text paramaters since there's no push or pop)
 function draw() {
     fill(displayText.color);
     textSize(displayText.textSize);

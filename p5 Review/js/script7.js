@@ -47,7 +47,7 @@ function keyTyped() {
         //(it makes a new random color.. not.. uhh. sorry to dissapoint. not THAT crazy i guess.)
     }
 }
-// heyyy this fella got an upgrade. got a bit more going on with the switching on and off, but nothing super involved. not too shabby, not too shabby
+// heyyy this fella got an upgrade. got a bit more going on with the switching on AND off, but nothing super involved. not too shabby, not too shabby
 function mouseClicked() {
     if (isSquare == false) {
         isSquare = true;
