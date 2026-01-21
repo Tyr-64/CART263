@@ -10,27 +10,27 @@ let square = {
         h: height / 10,
         x: width / 10,
         y: height / 10,
-        sR: 250,
-        sG: 94,
-        sB: 3,
+        R: 250,
+        G: 94,
+        B: 3,
     },
     two: {
         w: width / 10,
         h: height / 10,
         x: (width / 10) * 3,
         y: width / 10,
-        sR: 158,
-        sG: 5,
-        sB: 5,
+        R: 158,
+        G: 5,
+        B: 5,
     }
 }
 const ellipse = {
     x: width / 2,
     y: height / 2,
     radius: width / 12,
-    eR: 255,
-    eG: 255,
-    eB: 255,
+    R: 255,
+    G: 255,
+    B: 255,
     alpha: 15,
 }
 
@@ -44,11 +44,11 @@ function setup() {
 // draws background and uses function to draw squares, uses square interact function to handle user inputs and their effects, for loop displays contentric circles, resets click param at end of draw
 function draw() {
     background('black');
-    displaySquare(square.one.x, square.one.y, square.one.w, square.one.h, square.one.sR, square.one.sG, square.one.sB);
-    displaySquare(square.two.x, square.two.y, square.two.w, square.two.h, square.two.sR, square.two.sG, square.two.sB);
+    displaySquare(square.one.x, square.one.y, square.one.w, square.one.h, square.one.R, square.one.G, square.one.B);
+    displaySquare(square.two.x, square.two.y, square.two.w, square.two.h, square.two.R, square.two.G, square.two.B);
     squareInteract();
     for (let i = 1; i <= counter; i++) {
-        drawCircle(ellipse.x, ellipse.y, ellipse.radius * i, ellipse.alpha * i, ellipse.eR, ellipse.eG, ellipse.eB);
+        drawCircle(ellipse.x, ellipse.y, ellipse.radius * i, ellipse.alpha * i, ellipse.R, ellipse.G, ellipse.B);
     }
     click = false;
 
@@ -75,22 +75,22 @@ function squareCollision() {
 // handles most user interactions like increasing and decreasing ring counts, as well as the hover color change behavior on the box buttons
 function squareInteract() {
     if (squareCollision() === 'leftBox') {
-        square.one.sR = 252;
-        square.one.sG = 161;
-        square.one.sB = 3;
+        square.one.R = 252;
+        square.one.G = 161;
+        square.one.B = 3;
     }
     else if (squareCollision() === 'rightBox') {
-        square.two.sR = 255;
-        square.two.sG = 20;
-        square.two.sB = 0;
+        square.two.R = 255;
+        square.two.G = 20;
+        square.two.B = 0;
     }
     else if (squareCollision() === false) {
-        square.one.sR = 250;
-        square.one.sG = 94;
-        square.one.sB = 3;
-        square.two.sR = 158;
-        square.two.sG = 5;
-        square.two.sB = 5;
+        square.one.R = 250;
+        square.one.G = 94;
+        square.one.B = 3;
+        square.two.R = 158;
+        square.two.G = 5;
+        square.two.B = 5;
     }
     if (squareCollision() === 'leftBox' && click === true) {
         counter++;

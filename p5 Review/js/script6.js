@@ -1,6 +1,5 @@
 "use strict";
-// variables.. youre important but.. gosh. sitting up here high and dry? just directing everyone down there?
-const width = 600;
+// instantiate variables
 const height = 600;
 const unit = width / 20;
 const displayText = {
