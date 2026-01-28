@@ -85,48 +85,61 @@ function setup() {
     /*************************************** */
     /* 1: Select the first paragraph and replace the text within the paragraph... */
     /***CODE */
-    document.getElementById("1").innerHTML = "Text changed by Willow on January 27th :-0";
+
+    //document.getElementById("1").innerHTML = "Text changed by Willow on January 27th :-0";
+
     /*************************************** */
     /* 2: Select all elements in the HTML that have the class name content-container
      and change the background color ... of first and second ...*/
     /***CODE */
-    cContainers = document.querySelectorAll(".content-container");
-    cContainers[0].style.background = "orange";
-    cContainers[1].style.background = "purple";
+
+    // cContainers = document.querySelectorAll(".content-container");
+    // cContainers[0].style.background = "orange";
+    // cContainers[1].style.background = "purple";
+
     /*************************************** */
     /* 3: Change the src element of the first image element on the page to be ...
     /***CODE */
-    document.querySelector("img").setAttribute("src", "task-2-images/seven.png");
-    /*************************************** */
-    /* 4: Select the third paragraph element on the page and 
-    replace the content (within the paragraph) to be an h2 element which contains the text `TEST 123`
-    /***CODE */
-    document.querySelectorAll("p")[2].innerHTML = "<h2> TEST 123 </h2>";
-    /*************************************** */
-    /* 5: Select the fourth paragraph element on the page and 
-    add to the existing content an h2 element containing the text `TEST 123`
-    /***CODE */
-    document.querySelectorAll("p")[3].innerHTML += "<h2> TEST 123 </h2>";
-    /*************************************** */
-    /* 6: Select the fifth paragraph element on the page and add to the existing content 
-    an img element that holds `one.png`, and add the class newStyle to said paragraph element.
-    /***CODE */
-    document.querySelectorAll("p")[4].innerHTML += "<img src='task-2-images/one.png'>";
+
+    //document.querySelector("img").setAttribute("src", "task-2-images/seven.png");
 
     /*************************************** */
-    /* 7: Add the following array variable: let colors = ['red','blue','green','orange'];, 
+    /* 4: Select the third paragraph element on the page and
+    replace the content (within the paragraph) to be an h2 element which contains the text `TEST 123`
+    /***CODE */
+
+    // document.querySelectorAll("p")[2].innerHTML = "<h2> TEST 123 </h2>";
+
+    /*************************************** */
+    /* 5: Select the fourth paragraph element on the page and
+    add to the existing content an h2 element containing the text `TEST 123`
+    /***CODE */
+
+    //document.querySelectorAll("p")[3].innerHTML += "<h2> TEST 123 </h2>";
+
+    /*************************************** */
+    /* 6: Select the fifth paragraph element on the page and add to the existing content
+    an img element that holds `one.png`, and add the class newStyle to said paragraph element.
+    /***CODE */
+
+    //document.querySelectorAll("p")[4].innerHTML += "<img src='task-2-images/one.png'>";
+
+    /*************************************** */
+    /* 7: Add the following array variable: let colors = ['red','blue','green','orange'];,
     then access all elements with class name inner-container and save to a variable called `innerContainers`. 
     Next, iterate over the colors array, and for each color: 
     assign the element from innerContainers variable with the same index 
     (i.e. colors[0] should be allocated to the first innerContainers element, colors[1] to the second, etc ...) 
     a background using that color.
     /***CODE */
-    let colors = ['red', 'blue', 'green', 'orange'];
-    let innerContainers = document.querySelectorAll(".inner-container");
-    console.log(innerContainers);
-    for (let i = 0; i < innerContainers.length; i++) {
-        innerContainers[i].style.background = colors[i];
-    }
+
+    // let colors = ['red', 'blue', 'green', 'orange'];
+    // let innerContainers = document.querySelectorAll(".inner-container");
+    // console.log(innerContainers);
+    // for (let i = 0; i < innerContainers.length; i++) {
+    //     innerContainers[i].style.background = colors[i];
+    // }
+
     /*************************************** */
     /*** END PART TWO MODIFY */
 
@@ -142,14 +155,28 @@ function setup() {
     /* 1E:  Set the background of this paragraph element to be green */
     /* 1F:  Set the color of the text in this paragraph element to be white */
     /* 1G: Append this new element to the parent variable within the function. */
-    /* 1H: Iterate through the allPTagsThree array and call customCreateElement(), 
+    /* 1H: Iterate through the allPTagsThree array and call customCreateElement(),
     passing the current allPTagsThree element as the parent with each iteration.*/
     /***CODE */
 
+    let allPTagsThree = document.querySelectorAll("p");
+
+    function customCreateElement(parent) {
+        let newP = document.createElement("p");
+        newP.innerHTML = "using create Element";
+        newP.style.background = "green";
+        newP.style.color = "white";
+        parent.appendChild(newP);
+    }
+
+    for (y = 0; y < allPTagsThree.length; y++) {
+        customCreateElement(allPTagsThree[y]);
+    }
 
     /***EXPLANATION::
-     * 
-     * 
+     * The resulting output of the code is the standard HTML base page, but each paragraph element has a green bar underneath containing the "using create Element" text.
+     * The paragraph elements are at the top of the page and in each of the container boxes next to images.
+     * The screenshot is titled "screengrab1.png"
      */
 
     /*************************************** */
@@ -173,7 +200,20 @@ function setup() {
         otherwise lat it have the content `ODD`.*/
 
     /***CODE */
-
+    function customNewBoxCreate(parent) {
+        let newDiv = document.createElement("div");
+        newDiv.classList.add("testDiv");
+        parent.appendChild(newDiv);
+        return newDiv;
+    }
+    for (x = 0; x <= 10; x++) {
+        let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid"));
+        returnedDiv.style.left = (x * 20);
+        for (y = 0; y <= 10; y++) {
+            customNewBoxCreate(document.querySelector("#new-grid"));
+            returnedDiv.style.top = (x * 20);
+        }
+    }
 
     /***EXPLANATION::
      * 
