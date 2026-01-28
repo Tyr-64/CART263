@@ -206,12 +206,13 @@ function setup() {
         parent.appendChild(newDiv);
         return newDiv;
     }
-    for (x = 0; x <= 10; x++) {
+    for (x = 0; x < 10; x++) {
         let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid"));
         returnedDiv.style.left = (x * 20);
-        for (y = 0; y <= 10; y++) {
-            customNewBoxCreate(document.querySelector("#new-grid"));
-            returnedDiv.style.top = (x * 20);
+        for (y = 0; y < 10; y++) {
+            let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid"));
+            returnedDiv.style.top = (y * 20);
+            returnedDiv.style.left = (x * 20);
         }
     }
 
