@@ -122,7 +122,7 @@ function setup() {
     an img element that holds `one.png`, and add the class newStyle to said paragraph element.
     /***CODE */
 
-    //document.querySelectorAll("p")[4].innerHTML += "<img src='task-2-images/one.png'>";
+    //document.querySelectorAll("p")[4].innerHTML += "<img class='newStyle' src='task-2-images/one.png'>";
 
     /*************************************** */
     /* 7: Add the following array variable: let colors = ['red','blue','green','orange'];,
