@@ -207,18 +207,25 @@ function setup() {
         return newDiv;
     }
     for (x = 0; x < 10; x++) {
-        let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid"));
-        returnedDiv.style.left = (x * 20);
         for (y = 0; y < 10; y++) {
             let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid"));
-            returnedDiv.style.top = (y * 20);
-            returnedDiv.style.left = (x * 20);
+            if (y % 2 == 0) {
+                returnedDiv.style.background = "purple";
+                returnedDiv.innerHTML = "<p style='color: white'> ODD </p>";
+            }
+            else {
+                returnedDiv.style.background = "white";
+                returnedDiv.innerHTML = "<p> EVEN </p>";
+            }
+            returnedDiv.style.top = (y * 40) + "px";
+            returnedDiv.style.left = (x * 40) + "px";
         }
     }
 
     /***EXPLANATION::
-     * 
-     * 
+     * I make the custom box function which creates a new div element and gives it the set parent, then return the new div element
+     * I use nested for loops to repeatedly make new divs with the function, and assign them properties and positions each time they are created to make a grid
+     * I used modulo to find if it was an even or odd row, and give it the respective color and label
      */
 
     /*************************************** */
@@ -236,10 +243,30 @@ function setup() {
         when dividing by three. */
 
     /***CODE */
+    for (x = 0; x < 10; x++) {
+        for (y = 0; y < 10; y++) {
+            let returnedDiv = customNewBoxCreate(document.querySelector("#new-grid-three"));
+            if (x % 3 == 0) {
+                returnedDiv.style.background = "red";
+                returnedDiv.innerHTML = "<p> 0 </p>";
+            }
+            else if (x % 3 == 1) {
+                returnedDiv.style.background = "orange";
+                returnedDiv.innerHTML = "<p> 1 </p>";
+            }
+            else if (x % 3 == 2) {
+                returnedDiv.style.background = "yellow";
+                returnedDiv.innerHTML = "<p> 2 </p>";
+            }
+            returnedDiv.style.top = (y * 40) + "px";
+            returnedDiv.style.left = (x * 40) + "px";
+        }
+    }
 
 
     /***EXPLANATION::
-     * 
+     * Pretty similar to the above, the main difference is that I now check the x value instead of the y, so it works off of columns instead of rows
+     * That and I'm checking for numbers divisible by three.
      * 
      */
 
