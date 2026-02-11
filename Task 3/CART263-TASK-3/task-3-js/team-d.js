@@ -158,7 +158,7 @@ function setup_D() {
 
 
     //create an array of all available images to be used as moveable elements
-    let images = ["/media/cake.png", "/media/chair.png", "/media/jack.png", "/media/mannequin.png", "/media/pawn.png", "/media/rose.png", "/media/saw.png", "/media/scissors.png", "/media/toothbrush.png", "/media/whisk.png", "/media/ball.png", "/media/lamp.png", "/media/hoodie.png", "/media/camera.png", "/media/lettuce.png", "/media/roots.png", "/media/vine.png"];
+    let images = ["/media/cake.png", "/media/chair.png", "/media/jack.png", "/media/mannequin.png", "/media/pawn.png", "/media/rose.png", "/media/saw.png", "/media/scissors.png", "/media/toothbrush.png", "/media/whisk.png", "/media/ball.png", "/media/lamp.png", "/media/hoodie.png", "/media/camera.png", "/media/lettuce.png", "/media/gnome.png", "/media/vine.png", "/media/mop.png", "/media/illicit.png"];
 
     // biiiiig ol for loop to create 7 (or however many desired) random moveable images on the canvas, along with their shadow counterparts (necessary for the shade animation)
     //i create the image and assign it to its respective class, and id for convenient management. i give it random starting variables including image source, size, position, and rotation so that no run is the same
