@@ -154,6 +154,7 @@ function setup_D() {
     shadeHandle.style.maxWidth = parentCanvas.clientWidth + 20 + "px";
     shadeHandle.style.position = "absolute";
     shadeHandle.style.left = - 12 + "px";
+    shadeHandle.style.pointerEvents = "none";
 
 
     //create an array of all available images to be used as moveable elements
