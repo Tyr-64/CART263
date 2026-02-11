@@ -163,10 +163,10 @@ function setup_D() {
     // biiiiig ol for loop to create 7 (or however many desired) random moveable images on the canvas, along with their shadow counterparts (necessary for the shade animation)
     //i create the image and assign it to its respective class, and id for convenient management. i give it random starting variables including image source, size, position, and rotation so that no run is the same
     for (let x = 0; x < 7; x++) {
-      let left = Math.floor(Math.random() * 300) + "px"
-      let top = Math.floor(Math.random() * 300) + "px"
-      let rotate = Math.floor(Math.random() * 360) + "deg"
-      let maxWidth = Math.floor(Math.random() * (150 - 60 + 1) + 60) + "px"
+      let left = Math.floor(Math.random() * 300) + "px";
+      let top = Math.floor(Math.random() * 300) + "px";
+      let rotate = Math.floor(Math.random() * 360) + "deg";
+      let maxWidth = Math.floor(Math.random() * (150 - 60 + 1) + 60) + "px";
       let imageSelect = Math.floor(Math.random() * images.length)
       let image = document.createElement("img");
       image.classList.add("TEAM_D_ANI_D_img");
@@ -196,6 +196,10 @@ function setup_D() {
       shadeImage.style.maxWidth = maxWidth;
       shadeImage.setAttribute("id", "a" + x);
       underflowControl.appendChild(shadeImage);
+      if (Math.random() > .5) {
+        image.style.transform = "scaleX(-1)";
+        shadeImage.style.transform = "scaleX(-1)";
+      }
     }
     //make an array of all of the upper image elements
     let imageElements = document.getElementsByClassName("TEAM_D_ANI_D_img");
