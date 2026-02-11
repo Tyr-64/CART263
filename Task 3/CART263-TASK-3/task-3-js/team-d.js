@@ -110,6 +110,7 @@ function setup_D() {
     let relativeY;
     let rotation = 0;
     let anim;
+    let animating = false;
     let startHeight = 0;
     let shift = [];
     console.log("in ani-D -teamD");
@@ -206,7 +207,7 @@ function setup_D() {
     //listen for key events, in this case the arrow keys which control the shade animation and rotation of images
     window.addEventListener("keydown", function (event) {
       console.log("keypress");
-      if (event.key === "ArrowDown") {
+      if (event.key === "ArrowDown" && animating == false) {
         //create an array of the starting positions of upper images before the animation starts, so that I can use them as reference in the animation.
         //i substract the start pos from the animation movement so that they stay in their place while their parent div moves (overflow = hidden hides the images as the div scrolls away, creating the shade effect)
         for (let x = 0; x < imageElements.length; x++) {
@@ -216,7 +217,7 @@ function setup_D() {
         anim = requestAnimationFrame(shadeAnimate);
       }
       //same deal but in reverse. you cant move the images while the shade is down so no need to collect new starting positions
-      if (event.key === "ArrowUp") {
+      if (event.key === "ArrowUp" && animating == false) {
         shadeHandle.style.top = 0 + "px";
         overflowControl.style.top = 0 + "px";
         anim = requestAnimationFrame(shadeUp);
@@ -249,6 +250,7 @@ function setup_D() {
     }
     //as explained, divs down and uses overflow hidden to obscure the upper images. i also shrink and grow the overflowcontrol div so that when it moves down it doesnt also reveal the images outside of the canvas
     function shadeAnimate() {
+      animating = true;
       let endHeight = parentCanvas.clientHeight;
       startHeight += 2;
       overflowControl.style.top = startHeight + "px";
@@ -260,6 +262,7 @@ function setup_D() {
       }
       if (startHeight >= endHeight) {
         cancelAnimationFrame(anim);
+        animating = false;
       }
       else {
         anim = requestAnimationFrame(shadeAnimate);
@@ -267,6 +270,7 @@ function setup_D() {
     }
     //reverse of shadeanimate
     function shadeUp() {
+      animating = true;
       let endHeight = 0;
       startHeight -= 2;
       overflowControl.style.top = startHeight + "px";
@@ -278,6 +282,7 @@ function setup_D() {
       }
       if (startHeight <= endHeight) {
         cancelAnimationFrame(anim);
+        animating = false;
       }
       else {
         anim = requestAnimationFrame(shadeUp);
