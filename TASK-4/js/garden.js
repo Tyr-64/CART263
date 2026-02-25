@@ -1,9 +1,10 @@
-window.onload = function (){
-// Our garden
-let garden = {
+window.onload = function () {
+  // Our garden
+  let garden = {
     // An array to store the individual flowers
     flowers: [],
     nuts: [],
+    squirrels: [],
     // How many flowers in the garden
     numFlowers: 40,
     /*grass object */
@@ -17,7 +18,7 @@ let garden = {
       //the grass element
       grassDiv: document.createElement("div"),
     },
- 
+
     /*sky object */
     sky: {
       // The color of the sky (background)
@@ -31,7 +32,7 @@ let garden = {
     },
   };
   // new  sun instancce
-  let sun =  new Sun(10,10,{r: 240, g: 206,b: 83})
+  let sun = new Sun(10, 10, { r: 240, g: 206, b: 83 })
 
   function createAndRenderTheGarden() {
     /* note how we use dot notation....*/
@@ -49,121 +50,141 @@ let garden = {
 
     //create some flowers
     for (let i = 0; i < garden.numFlowers; i++) {
-        // Create variables for our arguments for clarity
-        let x = Math.random() * (window.innerWidth);
-        let y = Math.random() * 120;
-        let size = Math.random() * 30 + 10;
-        let stemLength = Math.random() * 50 + 20;
-        let petalColor = {
-          r: parseInt(Math.random() * 155) + 100,
-          g: parseInt(Math.random() * 155) + 100,
-          b: parseInt(Math.random() * 155) + 100,
-        };
-  
-        // Create a new flower using the arguments
-        let flower = new Flower(x, y, size, stemLength, petalColor);
-        // Add the flower to the array of flowers
-        garden.flowers.push(flower);
-      }
+      // Create variables for our arguments for clarity
+      let x = Math.random() * (window.innerWidth);
+      let y = Math.random() * 120;
+      let size = Math.random() * 30 + 10;
+      let stemLength = Math.random() * 50 + 20;
+      let petalColor = {
+        r: parseInt(Math.random() * 155) + 100,
+        g: parseInt(Math.random() * 155) + 100,
+        b: parseInt(Math.random() * 155) + 100,
+      };
 
-      for (let i = 0; i < garden.numFlowers; i++) {
-        // Add the flower to the array of flowers
-        garden.flowers[i].renderFlower();
-      }
+      // Create a new flower using the arguments
+      let flower = new Flower(x, y, size, stemLength, petalColor);
+      // Add the flower to the array of flowers
+      garden.flowers.push(flower);
+    }
+
+    for (let i = 0; i < garden.numFlowers; i++) {
+      // Add the flower to the array of flowers
+      garden.flowers[i].renderFlower();
+    }
   }
   createAndRenderTheGarden();
-  for(i = 0; i < 10; i++){
+  for (i = 0; i < 10; i++) {
     console.log(garden.grass.grassDiv.clientHeight);
-    let xPos = Math.random()*window.innerWidth;
-    let yPos = Math.random()*garden.grass.grassDiv.getBoundingClientRect().height;
-    let size = Math.random()*300;
-    let color = Math.random()*360;
+    let size = Math.random() * (200 - 30) + 30;
+    let xPos = Math.random() * (window.innerWidth - size);
+    let yPos = Math.random() * (garden.grass.grassDiv.getBoundingClientRect().height - size);
+    let color = Math.random() * 360;
     let nut = new Nut(xPos, yPos, size, color);
     garden.nuts[i] = nut;
     garden.nuts[i].renderNut();
   }
+  for (i = 0; i < 10; i++) {
+    console.log(garden.grass.grassDiv.clientHeight);
+    let size = Math.random() * (200 - 30) + 30;
+    let xPos = Math.random() * (window.innerWidth - size);
+    let yPos = Math.random() * (garden.grass.grassDiv.getBoundingClientRect().height - size);
+    let color = Math.random() * 360;
+    let squirrel = new Squirrel(xPos, yPos, size, color);
+    garden.squirrels[i] = squirrel;
+    garden.squirrels[i].renderSquirrel();
+  }
+  function updateGarden() {
+    for (i = 0; i < garden.nuts.length; i++) {
+      for (f = 0; f < garden.squirrels.length; f++) {
+        garden.nuts[i].pickUp(garden.squirrels[f]);
+      }
+    }
+    requestAnimationFrame(updateGarden);
+  }
+  window.requestAnimationFrame(updateGarden);
 }
 
-  
-  /*** TEAM A AND B NEED TO COORDINATE
-  
-  /**TEAM A -- BEES
- * 1/ Create a  file to hold a  Bee Class (i.e. Bee.js)
- * 2/ Create the Bee Class : a constructor which takes a position, size, color and a home beehive (SEE TEAM B) as parameters
- * 3/ In the Bee Class: Create a renderBee() method -> which essentially creates a HTML element(s) 
- - could be  * an image element :) or an svg .... representing a Bee... (see Sun or Flower for inspiration)
- * 4/ Create an animateBee() method in the Bee class - which will make a given Bee move around the garden - use the requestAnimationFrame() 
- * 5/ In garden.js add at least 5 new Bees to the garden (in an array) - 
- * all different sizes, colors etc... and set their position to be at their home Beehive's position
- * 6/ and then call the animateBee() method on all the Bees)
- * 7/Implement the functionality  to allow for bees to periodically return to their home beehive (SEE TEAM B) to rest :)
+
+
+/*** TEAM A AND B NEED TO COORDINATE
  
- /**TEAM B -- BEE HIVES
-  * 1/ Create a file to hold a Bee Hive (i.e. BeeHive.js)
- * 2/ Create the BeeHive Class : a constructor which takes a position, size and color as parameters
- * 3/ In the BeeHive Class: Create a renderBeeHive() method -> which essentially creates HTML element(s)
-  - could be * an image element :) or an svg .... representing a BeeHive.. (see Sun or Flower for inspiration)
- * 4/ Create a subtle animation affecting the bee-hive ... (using setInterval(), setTimeout, or requestAnimationFrame) 
+/**TEAM A -- BEES
+* 1/ Create a  file to hold a  Bee Class (i.e. Bee.js)
+* 2/ Create the Bee Class : a constructor which takes a position, size, color and a home beehive (SEE TEAM B) as parameters
+* 3/ In the Bee Class: Create a renderBee() method -> which essentially creates a HTML element(s) 
+- could be  * an image element :) or an svg .... representing a Bee... (see Sun or Flower for inspiration)
+* 4/ Create an animateBee() method in the Bee class - which will make a given Bee move around the garden - use the requestAnimationFrame() 
+* 5/ In garden.js add at least 5 new Bees to the garden (in an array) - 
+* all different sizes, colors etc... and set their position to be at their home Beehive's position
+* 6/ and then call the animateBee() method on all the Bees)
+* 7/Implement the functionality  to allow for bees to periodically return to their home beehive (SEE TEAM B) to rest :)
+ 
+/**TEAM B -- BEE HIVES
+* 1/ Create a file to hold a Bee Hive (i.e. BeeHive.js)
+* 2/ Create the BeeHive Class : a constructor which takes a position, size and color as parameters
+* 3/ In the BeeHive Class: Create a renderBeeHive() method -> which essentially creates HTML element(s)
+- could be * an image element :) or an svg .... representing a BeeHive.. (see Sun or Flower for inspiration)
+* 4/ Create a subtle animation affecting the bee-hive ... (using setInterval(), setTimeout, or requestAnimationFrame) 
 * 5/ In garden.js add at least new 2 Beehives  to the garden (in an array) - and ensure that they have bees linked to them
 * 6/ Add a click event to each beehive such that when clicked on -> you count the number of bees (SEE TEAM A for collab) "at home" 
-  and visually display the result
-  *
+and visually display the result
+*
 */
 
-  /*** TEAM C AND D NEED TO COORDINATE
+/*** TEAM C AND D NEED TO COORDINATE
 
 /**TEAM C -- SQUIRRELS
- * 1/ Create a file to hold a Squirrel Class (i.e. Squirrel.js)
- * 2/ Create the Squirrel Class : a constructor which takes a position, size and color as parameters
- * 3/ Create a renderSquirrel() method -> which essentially creates a HTML element(s) - could be
- * an image element :) or an svg .... representing a Squirrel... (see Sun or Flower for inspiration)
- * 4/ Create an animateSquirrel() method in the Squirrel class - which will make a given Squirrel move around the garden - use the requestAnimationFrame() 
- * 5/ In garden.js add 5 new Squirrels to the garden (in an array) - 
- * all different sizes and colors and in different positions 
- * and then call the animateSquirrel() method on all the Squirrels
- * 6/ Implement a counter to keep track of how many nuts any given squirrel has picked up (SEE TEAM D for collab)
+* 1/ Create a file to hold a Squirrel Class (i.e. Squirrel.js)
+* 2/ Create the Squirrel Class : a constructor which takes a position, size and color as parameters
+* 3/ Create a renderSquirrel() method -> which essentially creates a HTML element(s) - could be
+* an image element :) or an svg .... representing a Squirrel... (see Sun or Flower for inspiration)
+* 4/ Create an animateSquirrel() method in the Squirrel class - which will make a given Squirrel move around the garden - use the requestAnimationFrame() 
+* 5/ In garden.js add 5 new Squirrels to the garden (in an array) - 
+* all different sizes and colors and in different positions 
+* and then call the animateSquirrel() method on all the Squirrels
+* 6/ Implement a counter to keep track of how many nuts any given squirrel has picked up (SEE TEAM D for collab)
  
  
  
-  /**TEAM D -- NUTS
- * 1/ Create a file to hold a  Nut Class (i.e. Nut.js)
- * 2/ Create the Nut Class : a constructor which takes a position, size and color as parameters
- * 3/ Create a renderNut() method -> which essentially creates a HTML element(s) - could be
- * an image element :) or an svg .... representing a Nut... (see Sun or Flower for inspiration)
- * 4/ In garden.js add at least 10 new Nuts to the garden (in an array) - 
- * all different sizes and colors and in different positions 
- * 5/ Implement the functionality such that any nut can be picked up by a squirrel (SEE TEAM C for collab) - 
- * 6/ AND if it is picked up then make that nut "inactive" and add a new nut in the garden ... 
- * 
+/**TEAM D -- NUTS
+* 1/ Create a file to hold a  Nut Class (i.e. Nut.js)
+* 2/ Create the Nut Class : a constructor which takes a position, size and color as parameters
+* 3/ Create a renderNut() method -> which essentially creates a HTML element(s) - could be
+* an image element :) or an svg .... representing a Nut... (see Sun or Flower for inspiration)
+* 4/ In garden.js add at least 10 new Nuts to the garden (in an array) - 
+* all different sizes and colors and in different positions 
+* 5/ Implement the functionality such that any nut can be picked up by a squirrel (SEE TEAM C for collab) - 
+* 6/ AND if it is picked up then make that nut "inactive" and add a new nut in the garden ... 
+* 
 */
 
 
 
 
-  /*** TEAM E AND F NEED TO COORDINATE
+/*** TEAM E AND F NEED TO COORDINATE
 
 /** TEAM E BIRDS
- * 1/ Create a  file to hold a  Bird Class (i.e. Bird.js)
- * 2/ Create the Bird Class : a constructor which takes a position, size and color as parameters
- * 3/ Create a Bird() method -> which essentially creates a HTML element(s) - could be
- * an image element :) or an svg .... representing a Bird... (see Sun or Flower for inspiration)
- * 4/ Create an animateBird() method in the Bird class - which will make a given Bird move around the sky - use the requestAnimationFrame() 
- * 5/ In garden.js add an empty array for the birds 
- * 6/ Use either the keyboard or mouse events to dynamically allow for users to add new birds to the garden - and have them be animated.
- * 7/ Ensure that birds take cover somewhere in the garden if the weather temp (SEE TEAM F for collab) is determined to be too cold/ too hot or if it is raining
- * 
- * 
+* 1/ Create a  file to hold a  Bird Class (i.e. Bird.js)
+* 2/ Create the Bird Class : a constructor which takes a position, size and color as parameters
+* 3/ Create a Bird() method -> which essentially creates a HTML element(s) - could be
+* an image element :) or an svg .... representing a Bird... (see Sun or Flower for inspiration)
+* 4/ Create an animateBird() method in the Bird class - which will make a given Bird move around the sky - use the requestAnimationFrame() 
+* 5/ In garden.js add an empty array for the birds 
+* 6/ Use either the keyboard or mouse events to dynamically allow for users to add new birds to the garden - and have them be animated.
+* 7/ Ensure that birds take cover somewhere in the garden if the weather temp (SEE TEAM F for collab) is determined to be too cold/ too hot or if it is raining
+* 
+* 
 */
 
- 
-  /**TEAM F -- Weather
- * 1/ Create a file to hold a Weather Class (i.e. Weather.js)
- * 2/ Create the Weather Class : a constructor which takes at LEAST 2 properties: weather "state" i.e. sunny, raining, cloudy as well as a variable to hold the current temp
- * 3/ Create a renderWeather() method -> which essentially will call one of a few custom methods to render the current weather:
- * 4/ If the weather is determined to be sunny then call the renderSunny() which will contain HTML element(s) - could be
- * images, svgs etc .... representing sunny weather, if the weather is determined to be rainy then one would call a renderRainy() etc ...
- * 5/ In garden.js instantiate a weather state + add the current temperature.
- * 6/ Implement the functionality such that at different time intervals the weather changes and or the temperature.
- * 7/ Ensure and Implement the functionality for the birds (collab with TEAM E) to be affected by the current weather and temperature.
- * 
+
+/**TEAM F -- Weather
+* 1/ Create a file to hold a Weather Class (i.e. Weather.js)
+* 2/ Create the Weather Class : a constructor which takes at LEAST 2 properties: weather "state" i.e. sunny, raining, cloudy as well as a variable to hold the current temp
+* 3/ Create a renderWeather() method -> which essentially will call one of a few custom methods to render the current weather:
+* 4/ If the weather is determined to be sunny then call the renderSunny() which will contain HTML element(s) - could be
+* images, svgs etc .... representing sunny weather, if the weather is determined to be rainy then one would call a renderRainy() etc ...
+* 5/ In garden.js instantiate a weather state + add the current temperature.
+* 6/ Implement the functionality such that at different time intervals the weather changes and or the temperature.
+* 7/ Ensure and Implement the functionality for the birds (collab with TEAM E) to be affected by the current weather and temperature.
+* 
 */

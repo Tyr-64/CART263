@@ -1,16 +1,17 @@
 class Nut {
 
-    constructor(x,y,size, color){
+    constructor(x, y, size, color) {
         this.x = x;
         this.y = y;
         this.size = size;
         this.color = color;
         this.nut = document.createElement("img");
+        this.isPickedUp = false;
 
     }
 
 
-    renderNut(){
+    renderNut() {
         this.nut.src = "/media/nut.png";
         this.nut.classList.add("nut");
         this.nut.style.left = this.x + "px";
@@ -20,5 +21,17 @@ class Nut {
         this.nut.style.filter = "hue-rotate(" + this.color + "deg)";
         console.log("rendering");
         document.getElementsByClassName("grass")[0].appendChild(this.nut);
+
+    }
+    pickUp(squirrel) {
+        let squirrelBody = squirrel.body.getBoundingClientRect();
+        let nutSpot = this.nut.getBoundingClientRect();
+        if (Math.hypot((nutSpot.x + (nutSpot.width / 2)) - (squirrelBody.x + (squirrelBody.width / 2)), (nutSpot.y + (nutSpot.height / 2)) - (squirrelBody.y + (squirrelBody.height / 2))) < this.size / 2 + squirrel.size / 2 && this.isPickedUp == false) {
+            this.isPickedUp = true;
+            this.nut.style.filter = "brightness(" + 5000 + "%)";
+            //this.nut.style.zIndex = "2";
+            console.log("picked up nut");
+            //squirrel.nutCount++;
+        }
     }
 }
