@@ -73,9 +73,12 @@ window.onload = function () {
     }
   }
   createAndRenderTheGarden();
+
+  //below is our team D code : - )
+  // we used updateGarden as the animation function but if there's a general one other people use you can put the code in there
   for (i = 0; i < 10; i++) {
     console.log(garden.grass.grassDiv.clientHeight);
-    let size = Math.random() * (200 - 30) + 30;
+    let size = Math.random() * (80 - 30) + 30;
     let xPos = Math.random() * (window.innerWidth - size);
     let yPos = Math.random() * (garden.grass.grassDiv.getBoundingClientRect().height - size);
     let color = Math.random() * 360;
@@ -83,25 +86,16 @@ window.onload = function () {
     garden.nuts[i] = nut;
     garden.nuts[i].renderNut();
   }
-  for (i = 0; i < 10; i++) {
-    console.log(garden.grass.grassDiv.clientHeight);
-    let size = Math.random() * (200 - 30) + 30;
-    let xPos = Math.random() * (window.innerWidth - size);
-    let yPos = Math.random() * (garden.grass.grassDiv.getBoundingClientRect().height - size);
-    let color = Math.random() * 360;
-    let squirrel = new Squirrel(xPos, yPos, size, color);
-    garden.squirrels[i] = squirrel;
-    garden.squirrels[i].renderSquirrel();
-  }
   function updateGarden() {
-    for (i = 0; i < garden.nuts.length; i++) {
-      for (f = 0; f < garden.squirrels.length; f++) {
-        garden.nuts[i].pickUp(garden.squirrels[f]);
+    for (i = 0; i < garden.squirrels.length; i++) {
+      for (f = 0; f < garden.nuts.length; f++) {
+        garden.nuts[f].pickUp(garden.squirrels[i], i);
       }
     }
     requestAnimationFrame(updateGarden);
   }
   window.requestAnimationFrame(updateGarden);
+
 }
 
 
