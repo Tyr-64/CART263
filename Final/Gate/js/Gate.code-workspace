@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../School Repos/CART253/projects/VariationJam/AudioReact"
+		},
+		{
+			"path": "../../../../School Repos/CART263/Task 3"
+		},
+		{
+			"path": "../../../../School Repos/CART253/projects/VariationJam/Overflow"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Gate"
+	}
+}

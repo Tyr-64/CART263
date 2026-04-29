@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+
+    <title>Gate</title>
+
+    <!-- CSS stylesheet(s) -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <!-- Library script(s) -->
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@v0.184.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.184.0/examples/jsm/"
+  }
+}
+</script>
+    <!-- p5.min.js is the main p5 library -->
+    <script src="js/libraries/p5.min.js"></script>
+    <!-- p5.sound.min.js allows us to use sound -->
+    <script src="js/libraries/p5.sound.min.js"></script>
+
+    <!-- <script lang="text/javascript"
+        src="https://unpkg.com/simple-web-serial@latest/dist/simple-web-serial.min.js"></script>
+ -->
+
+    <!-- My script(s) -->
+    <script type="module" src="js/main.js"></script>
+
+</head>
+
+<body style="background-color: #353535;">
+    <img src="/media/homemaybe-00329-texture.png" class="bgImage">
+    <section class="flex-box">
+        <div id="canvasBox" class="canvasBox">
+            <canvas id="threeCanvas"></canvas>
+        </div>
+        <div id="textInputBox" class="textBox">
+            <div class="textLog" id="log">
+                <p> hello??? </p>
+            </div>
+            <div class="inputZone">
+                <textarea class="textInput" id="textField">  </textarea>
+                <button id="sendButton" class="sendButton" onclick="testFunction()">speak</button>
+                <p id="testText"></p>
+            </div>
+        </div>
+    </section>
+    <div class="topSide">
+        <img src="/media/otherHead.png" class="head" id="head">
+        <canvas id="topCanvas" class="topCanvas"></canvas>
+    </div>
+    <div class="rightSide">
+        <img src="/media/handR.png" class="rightArm" id="rightArm">
+        <canvas id="rightCanvas" class="rightCanvas"></canvas>
+    </div>
+    <div class="bottomSide">
+
+        <canvas id="bottomLeftCanvas" class="bottomLeftCanvas"></canvas>
+        <canvas id="bottomRightCanvas" class="bottomRightCanvas"></canvas>
+
+    </div>
+    <div class="bottomImages">
+        <img src="/media/legL.png" class="leftLeg" id="leftLeg">
+        <img src="/media/legR.png" class="rightLeg" id="rightLeg">
+    </div>
+    <div class="leftSide">
+        <img src="/media/handL.png" class="leftArm" id="leftArm">
+        <canvas id="leftCanvas" class="leftCanvas"></canvas>
+    </div>
+
+</body>
+
+</html>
